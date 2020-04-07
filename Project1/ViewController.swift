@@ -26,7 +26,7 @@ class ViewController: UITableViewController {
                 pictures.append(item)
             }
         }
-        print(pictures)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(appRecommendation))
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,6 +44,12 @@ class ViewController: UITableViewController {
             vc.selectedImage = pictures[indexPath.row]
             navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    @objc func appRecommendation() {
+        let alert = UIAlertController(title: "Like our app?", message: "Please, recommend our app to other people!", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Sure!", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true)
     }
 }
 
