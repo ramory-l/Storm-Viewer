@@ -26,7 +26,9 @@ class ViewController: UITableViewController {
                 pictures.append(item)
             }
         }
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(appRecommendation))
+        let infoButton = UIButton(type: .infoLight)
+        infoButton.addTarget(self, action: #selector(appRecommendation), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
