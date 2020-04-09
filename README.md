@@ -9,7 +9,7 @@ You can browse cool storm photos with this app.
 
 ## Authors
 
-* **Mikhail Strizhenov** - *Initial work* - [PurpleBooth](https://github.com/ramory-l)
+* **Mikhail Strizhenov**
 
 ## License
 
