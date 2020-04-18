@@ -30,17 +30,28 @@ class ViewController: UITableViewController {
         infoButton.addTarget(self, action: #selector(appRecommendation), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pictures.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Picture", for: indexPath)
+        let defaults = UserDefaults.standard
+        let seenTimes = defaults.integer(forKey: pictures[indexPath.row])
         cell.textLabel?.text = pictures[indexPath.row]
+        cell.detailTextLabel?.text = "Was seen \(seenTimes) times"
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
+            let defaults = UserDefaults.standard
+            var seenTimes = defaults.integer(forKey: pictures[indexPath.row])
+            seenTimes += 1
+            defaults.set(seenTimes, forKey: pictures[indexPath.row])
             vc.imageNumber = indexPath.row + 1
             vc.numberOfImages = pictures.count
             vc.selectedImage = pictures[indexPath.row]
