@@ -5,6 +5,7 @@ You can browse cool storm photos with this app.
 ## Built With
 
 * UIKit framework used
+* CoreGraphics framework used
 * Swift programming language
 
 ## Authors
